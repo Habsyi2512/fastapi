@@ -1,1 +1,0 @@
-const oke = 1;
