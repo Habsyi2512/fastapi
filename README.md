@@ -38,12 +38,11 @@
 ## Prasyarat
 
 - Python 3.12.6
-- Docker dan Docker Compose (untuk pengembangan dan produksi)
 
 ## Instalasi
 
 1. **Clone repositori**:
 
    ```bash
-   git clone https://github.com/username/fastapi.git
+   git clone https://github.com/Habsyi2512/fastapi.git
    cd fastapi
