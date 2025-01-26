@@ -16,10 +16,6 @@ app.add_middleware(
   allow_headers=["*"]
 )
 
-origins = [
-  "http://localhost:3000"
-]
-
 @app.get("/api")
 def read_root():
   return {"Hello":"World"}
@@ -28,7 +24,7 @@ def read_root():
 def read_item(id:int, q: Union[int, None] = None):
   return {"item_id":id, "q":q}
 
-@app.get("api/get-profile")
+@app.get("/api/get-profile")
 def get_profile():
   return {
     "nama":"Muhammad Habsyi Mubarak",
