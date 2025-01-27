@@ -7,5 +7,9 @@ class User(SQLModel, table=True):
   name: str
   age: int
 
+  __tablename__ = "users"
 
+class UserCreate(SQLModel):
+  name: str
+  age: int
 

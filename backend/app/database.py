@@ -6,7 +6,7 @@ DATABASE_URL = "mysql+pymysql://root:root@localhost/db_todo_fastapi"
 engine = create_engine(DATABASE_URL, echo=True)
 
 @contextmanager
-def session_scope():
+def get_session():
     session = Session(engine)
     try:
         yield session
