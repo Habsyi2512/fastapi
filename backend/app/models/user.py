@@ -7,9 +7,5 @@ class User(SQLModel, table=True):
   name: str
   age: int
 
-mysql_url = "mysql://root:root@localhost/db_todo_fastapi"
 
-engine = create_engine(mysql_url, echo=True)
 
-def create_db_and_tables():
-  SQLModel.metadata.create_all(engine)
