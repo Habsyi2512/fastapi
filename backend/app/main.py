@@ -1,6 +1,7 @@
 from typing import Union
 from fastapi import FastAPI 
 from fastapi.middleware.cors import CORSMiddleware
+from models.user import create_db_and_tables
 
 app = FastAPI()
 
@@ -15,3 +16,7 @@ app.add_middleware(
   allow_methods=["*"],
   allow_headers=["*"]
 )
+
+@app.on_event('startup')
+def on_startup():
+  create_db_and_tables()
