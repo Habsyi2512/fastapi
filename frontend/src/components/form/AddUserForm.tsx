@@ -4,18 +4,41 @@ import React, { useState } from "react";
 
 export default function AddUserForm() {
   const [name, setName] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
+  const [age, setAge] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, age });
+    try {
+      const response = await fetch("http://localhost:8000/api/users/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          age: Number(age),
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+    setName("");
+    setAge("");
+    alert("Data berhasil ditambahkan!");
   };
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
+    <form onSubmit={handleSubmit} method="POST" className="space-y-2">
       <label className="block">
         Name:
         <input
           type="text"
+          placeholder="Masukkan Nama"
+          className="p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -24,11 +47,13 @@ export default function AddUserForm() {
         Age:
         <input
           type="text"
-          className="appearance-none"
+          className="appearance-none p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
           value={age}
-          pattern="\d*"
-          placeholder="input age"
-          onChange={(e) => setAge(Number(e.target.value))}
+          placeholder="Masukkan Umur"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const formattedValue = e.target.value.replace(/[^\d]/g, "");
+            setAge(formattedValue);
+          }}
         />
       </label>
       <button

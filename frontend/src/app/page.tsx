@@ -7,7 +7,7 @@ export default async function Home() {
         Halaman Utama
       </h1>
       <div className="w-full max-w-xl p-2 shadow rounded mx-auto bg-neutral-300">
-        <p className="text-xl text-center">Ini adalah contoh halaman utama.</p>
+        <h1 className="text-center py-5 text-2xl font-bold text-neutral-700">Form</h1>
         <AddUserForm />
       </div>
     </div>
