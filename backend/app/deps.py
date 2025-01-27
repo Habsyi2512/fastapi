@@ -3,4 +3,5 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-d
+api_url = os.getenv('API_URL')
+print(api_url)
